@@ -1,0 +1,8 @@
+<app-template-container title="Modifiez votre message">
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" *ngIf="message$ | async">
+    <div class="form-group">
+      <textarea rows="5" class="form-control" id="text" formControlName="text"></textarea>
+    </div>
+    <app-btn type="submit" label="Modifier"></app-btn>
+  </form>
+</app-template-container>
