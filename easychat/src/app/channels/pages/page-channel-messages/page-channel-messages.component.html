@@ -1,0 +1,25 @@
+<app-template-full-width [title]="channel.name" *ngIf="channel$|async as channel">
+  <div *ngIf="collection$ |async as collection" class="allMessages">
+    <!-- Affichage des messages -->
+    <div *ngFor="let message of collection" class="messageCapsule">
+      <div *ngIf="user$|async as user">
+        <span><app-icon-edit (click)="goToEdit(message.id)"></app-icon-edit></span>
+        <span class="userMessage">{{user.username}}</span>
+        <span class="dateMessage">{{message.updatedAt | dateFormat}}</span>
+        <span><app-icon-delete></app-icon-delete></span>
+        <p>{{message.text}}</p>
+      </div>
+    </div>
+    <!-- Formulaire, création de message -->
+    <div>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <textarea rows="5" placeholder="Saisissez votre message..." class="form-control" id="text"
+            formControlName="text"></textarea>
+        </div>
+        <app-btn type="submit" label="Envoyer"></app-btn>
+      </form>
+    </div>
+
+  </div>
+</app-template-full-width>
